@@ -1,1 +1,201 @@
+Q:-1 https://leetcode.com/problems/contains-duplicate/
 
+Ans:
+public class Solution {
+    public bool ContainsDuplicate(int[] nums) {
+        List<int> list = new List<int>();
+
+       for(int i =0;i<nums.Length;i++)
+       {       
+        if(list.Contains(nums[i]))
+        {
+           return true;
+        }
+        else{
+            list.Add(nums[i]);
+        }
+       }
+       return false;
+    }
+}
+
+
+========================================================
+Q:-2 https://leetcode.com/problems/valid-anagram/
+
+Ans:
+public class Solution {
+    public bool IsAnagram(string s, string t) {
+        char[] firstArray = s.ToCharArray();
+        char[] secondArray = t.ToCharArray();
+        return firstArray.OrderBy(c=>c).SequenceEqual((secondArray.OrderBy(c=>c)));
+        
+    }
+}
+
+=======================================================
+Q:-3 https://leetcode.com/problems/two-sum/
+
+Ans:
+public class Solution {
+    public int[] TwoSum(int[] nums, int target) {
+        
+        for(int i= 0; i < nums.Length - 1; i++)
+        {
+            for(int j = i + 1; j < nums.Length; j++)
+            {
+            if(nums[i] + nums[j] == target)
+            {
+                return new int[] {i, j};
+            }
+            }
+           
+           
+        }
+        
+         return new int[]{};
+    }
+}
+====================================================
+Q:-4 https://leetcode.com/problems/group-anagrams/
+
+Ans:
+public class Solution {
+    public IList<IList<string>> GroupAnagrams(string[] strs) {
+        Dictionary<string,IList<string>> dict = new Dictionary<string,IList<string>>();
+         foreach(var str in strs)
+         {
+            char[] arr = str.ToCharArray();
+            Array.Sort(arr);
+            String sorted = new String(arr);
+            if(!dict.ContainsKey(sorted))
+            {
+                dict[sorted] = new List<String>();
+            }
+            
+                dict[sorted].Add(str);
+            
+         }
+         return dict.Values.ToList();
+    }
+}
+==========================================================
+Q:-5 https://leetcode.com/problems/top-k-frequent-elements/description/
+
+Ans:
+public class Solution {
+    public int[] TopKFrequent(int[] nums, int k) {
+        Dictionary<int,int> dict = new Dictionary<int,int>();
+        foreach(var num in nums)
+        {
+            if(dict.ContainsKey(num))
+            {
+                dict[num]++;
+            }
+else{
+    dict.Add(num,1);
+}
+        }
+List<int> result = new List<int>();
+foreach(var dic in dict.OrderByDescending(d=>d.Value))
+{
+    if(result.Count < k)
+    {
+result.Add(dic.Key);
+continue;
+    }
+    break;
+}
+
+
+        return result.ToArray();
+    }
+}
+
+==============================================================================
+Q:6 https://leetcode.com/problems/product-of-array-except-self/description/
+
+Ans:
+public class Solution {
+    public int[] ProductExceptSelf(int[] nums) {
+        int n = nums.Length;
+        int[] res = new int[n];
+        int productOfAllBeforeCurrent = 1;
+        int productOfAllAfterCurrent = 1;
+
+        for(int i = 0; i< n; i++)
+        {
+            res[i] = productOfAllBeforeCurrent;
+            productOfAllBeforeCurrent *= nums[i];
+        }
+        for(int i = n-1 ; i >= 0; i--)
+        {
+            res[i] *= productOfAllAfterCurrent;
+            productOfAllAfterCurrent *= nums[i];
+        }
+        return res;
+    }
+}
+======================================================================================
+Q:-7 https://leetcode.com/problems/valid-sudoku/description/
+
+Ans:
+public class Solution {
+    public bool IsValidSudoku(char[][] board) {
+        HashSet<char>[] rowSeen = new HashSet<char>[9];
+         HashSet<char>[] colSeen = new HashSet<char>[9];
+          HashSet<char>[] boxSeen = new HashSet<char>[9];
+          for(int i=  0 ; i< 9; i++)
+          {
+            rowSeen[i] = new HashSet<char>();
+            colSeen[i]= new HashSet<char>();
+            boxSeen[i]=new HashSet<char>();
+          }
+          for (int i =0;i<9;i++)
+          {
+            for(int j=0;j<9;j++){
+                char num = board[i][j];
+                if(num == '.')continue;
+                int boxIndex=(i/3)*3 + j/3;
+                if(rowSeen[i].Contains(num) 
+                || colSeen[j].Contains(num)
+                || boxSeen[boxIndex].Contains(num))
+                {
+                    return false;
+                }
+                rowSeen[i].Add(num);
+                colSeen[j].Add(num);
+                boxSeen[boxIndex].Add(num);
+            }
+          }
+          return true;
+    }
+}
+
+====================================================================
+Q:- 8  https://leetcode.com/problems/longest-consecutive-sequence/description/
+
+public class Solution {
+    public int LongestConsecutive(int[] nums) {
+        int longestLength = 0;
+        HashSet<int> map = new  HashSet<int>(nums);
+        
+        foreach (var num in nums)
+        {
+            int currentLength = 1;
+            int nextNum = num +1;
+            if(!map.Contains(num - 1))
+            {
+                while(map.Contains(nextNum))
+            {
+                currentLength ++;
+               
+                nextNum++;
+            }
+            
+            }
+            longestLength = Math.Max(longestLength,currentLength);
+        }
+return longestLength;
+    }
+}
