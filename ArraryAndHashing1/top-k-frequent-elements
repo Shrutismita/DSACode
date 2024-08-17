@@ -1,0 +1,31 @@
+Q:-5 https://leetcode.com/problems/top-k-frequent-elements/description/
+
+Ans:
+public class Solution {
+    public int[] TopKFrequent(int[] nums, int k) {
+        Dictionary<int,int> dict = new Dictionary<int,int>();
+        foreach(var num in nums)
+        {
+            if(dict.ContainsKey(num))
+            {
+                dict[num]++;
+            }
+else{
+    dict.Add(num,1);
+}
+        }
+List<int> result = new List<int>();
+foreach(var dic in dict.OrderByDescending(d=>d.Value))
+{
+    if(result.Count < k)
+    {
+result.Add(dic.Key);
+continue;
+    }
+    break;
+}
+
+
+        return result.ToArray();
+    }
+}
