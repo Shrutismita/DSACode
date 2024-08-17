@@ -1,0 +1,34 @@
+Q:-7 https://leetcode.com/problems/valid-sudoku/description/
+
+Ans:
+public class Solution {
+    public bool IsValidSudoku(char[][] board) {
+        HashSet<char>[] rowSeen = new HashSet<char>[9];
+         HashSet<char>[] colSeen = new HashSet<char>[9];
+          HashSet<char>[] boxSeen = new HashSet<char>[9];
+          for(int i=  0 ; i< 9; i++)
+          {
+            rowSeen[i] = new HashSet<char>();
+            colSeen[i]= new HashSet<char>();
+            boxSeen[i]=new HashSet<char>();
+          }
+          for (int i =0;i<9;i++)
+          {
+            for(int j=0;j<9;j++){
+                char num = board[i][j];
+                if(num == '.')continue;
+                int boxIndex=(i/3)*3 + j/3;
+                if(rowSeen[i].Contains(num) 
+                || colSeen[j].Contains(num)
+                || boxSeen[boxIndex].Contains(num))
+                {
+                    return false;
+                }
+                rowSeen[i].Add(num);
+                colSeen[j].Add(num);
+                boxSeen[boxIndex].Add(num);
+            }
+          }
+          return true;
+    }
+}
