@@ -1,0 +1,61 @@
+Q:-3 https://leetcode.com/problems/3sum/description/
+Using Two Pointer
+Ans:
+public class Solution {
+    public IList<IList<int>> ThreeSum(int[] nums) {
+        int left,right;
+        List<IList<int>> res = new List<IList<int>>();
+        Array.Sort(nums);
+        int i=0;
+        while(i < nums.Length)
+        {
+          
+            left = i+1;
+            right = nums.Length - 1;
+            while(left < right)
+            {
+                int sum = nums[i]+nums[left]+nums[right];
+                if(sum == 0 )
+                {
+                    res.Add(new List<int>{nums[i],nums[left],nums[right]});
+                    left ++;
+                     right--;
+                    while(left < right && nums[left] == nums[left - 1])
+                    {
+                        left++;
+                    }
+                   
+                    while(left < right && nums[right] == nums[right + 1])
+                    {
+                        right--;
+                    }
+                    
+                }
+                else if(sum > 0)
+                {
+                    right--;
+                    while(left < right && nums[right] == nums[right + 1])
+                    {
+                        right--;
+                    }
+                    
+                }
+                else if(sum < 0)
+                {
+                    left++;
+                   while(left < right && nums[left] == nums[left - 1])
+                    {
+                        left++;
+                    }
+                }
+               
+            }
+             i++;
+                while(i < nums.Length && nums[i] == nums[i-1])
+                {
+                    i++;
+                }
+        }
+        return res.ToArray();
+    }
+}
