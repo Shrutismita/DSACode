@@ -1,0 +1,24 @@
+Q:-2 https://leetcode.com/problems/container-with-most-water/description/
+Using Two Pointers
+Ans:
+public class Solution {
+    public int MaxArea(int[] height) {
+        int n = height.Length;
+        int left = 0, right = n-1;
+        int ans = 0;
+         while(left < right)
+         {
+            ans = Math.Max(ans , ((right - left) * Math.Min(height[left],height[right])));
+            
+            if(height[left] < height[right])
+            {
+                left ++;
+            }
+            else
+            {
+                right--;
+            }
+         }
+         return ans;
+    }
+}
