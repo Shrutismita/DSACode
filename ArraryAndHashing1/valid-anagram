@@ -1,0 +1,11 @@
+Q:-2 https://leetcode.com/problems/valid-anagram/
+
+Ans:
+public class Solution {
+    public bool IsAnagram(string s, string t) {
+        char[] firstArray = s.ToCharArray();
+        char[] secondArray = t.ToCharArray();
+        return firstArray.OrderBy(c=>c).SequenceEqual((secondArray.OrderBy(c=>c)));
+        
+    }
+}
