@@ -1,0 +1,22 @@
+Q:-4 https://leetcode.com/problems/group-anagrams/
+
+Ans:
+public class Solution {
+    public IList<IList<string>> GroupAnagrams(string[] strs) {
+        Dictionary<string,IList<string>> dict = new Dictionary<string,IList<string>>();
+         foreach(var str in strs)
+         {
+            char[] arr = str.ToCharArray();
+            Array.Sort(arr);
+            String sorted = new String(arr);
+            if(!dict.ContainsKey(sorted))
+            {
+                dict[sorted] = new List<String>();
+            }
+            
+                dict[sorted].Add(str);
+            
+         }
+         return dict.Values.ToList();
+    }
+}
