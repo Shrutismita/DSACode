@@ -1,0 +1,26 @@
+Q:- 8  https://leetcode.com/problems/longest-consecutive-sequence/description/
+
+public class Solution {
+    public int LongestConsecutive(int[] nums) {
+        int longestLength = 0;
+        HashSet<int> map = new  HashSet<int>(nums);
+        
+        foreach (var num in nums)
+        {
+            int currentLength = 1;
+            int nextNum = num +1;
+            if(!map.Contains(num - 1))
+            {
+                while(map.Contains(nextNum))
+            {
+                currentLength ++;
+               
+                nextNum++;
+            }
+            
+            }
+            longestLength = Math.Max(longestLength,currentLength);
+        }
+return longestLength;
+    }
+}
