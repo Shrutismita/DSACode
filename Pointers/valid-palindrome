@@ -1,0 +1,28 @@
+Q:-5 https://leetcode.com/problems/valid-palindrome/description/ 
+using Two Pointers
+
+Ans:
+public class Solution {
+    public bool IsPalindrome(string s) {
+        int n = s.Length;
+        int left = 0, right = n - 1;
+        s = s.ToLower();
+        while(left < right)
+        {
+            while(left < n && !char.IsLetterOrDigit(s[left]))
+            {
+                left++;
+            }
+            while (right > 0 && !char.IsLetterOrDigit(s[right]))
+            {
+                right--;
+            }
+            if(left < right && s[left] != s[right]){
+                return false;
+            }
+            left++;
+            right--;
+        }
+        return true;
+    }
+}
