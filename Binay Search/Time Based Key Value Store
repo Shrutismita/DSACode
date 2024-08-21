@@ -1,0 +1,47 @@
+Q:- Time Based Key Value Store
+
+public class TimeMap {
+       Dictionary<string,IList<(int timestamp,string value)>> dict ;
+    public TimeMap() {
+        dict = new Dictionary<string , IList<(int teimestamp,string value)>>();
+    }
+    
+    public void Set(string key, string value, int timestamp) {
+        dict.TryAdd(key, new List<(int,string)>());
+        dict[key].Add((timestamp,value));
+    }
+    
+    public string Get(string key, int timestamp) {
+        string result = "";
+        if(dict.ContainsKey(key))
+        {
+            var list = dict[key];
+            int left = 0, right  = list.Count - 1, mid = 0;
+            while(left <= right)
+            {
+                mid = (left + right)/2;
+                if(list[mid].timestamp == timestamp)
+                {
+                    return list[mid].value;
+                }
+                else if(list[mid].timestamp < timestamp)
+                {
+                    left = mid + 1;
+                    result = list[mid].value;
+                }
+                else
+                {
+                    right = mid - 1;
+                }
+            }
+        }
+        return result;
+    }
+}
+
+/**
+ * Your TimeMap object will be instantiated and called as such:
+ * TimeMap obj = new TimeMap();
+ * obj.Set(key,value,timestamp);
+ * string param_2 = obj.Get(key,timestamp);
+ */
