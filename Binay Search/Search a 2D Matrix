@@ -1,6 +1,6 @@
 Q:- Search a 2D Matrix
 Ans:- Using Stack
-Time Complexity:- O(logn)
+Time Complexity:- O(log m*n)
 
 public class Solution {
     public bool SearchMatrix(int[][] matrix, int target) {
