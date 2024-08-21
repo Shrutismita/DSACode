@@ -1,0 +1,30 @@
+Q: Generate Parentheses
+Ans: Using Stack and back tracking
+timeComplexity:- 
+
+public class Solution {
+    public IList<string> GenerateParenthesis(int n) {
+        var result = new List<string>();
+        var str = new StringBuilder();
+        
+        void backtrack(int open, int close) {
+            if(str.Length == n * 2) {
+                result.Add(str.ToString());
+                return;
+            } 
+            if(open < n) {
+                str.Append('(');
+                backtrack(open + 1, close);
+                str.Remove(str.Length - 1, 1);
+            }
+            if(close < open) {
+                str.Append(')');
+                backtrack(open, close + 1);
+                str.Remove(str.Length - 1, 1);
+            }
+        }
+
+        backtrack(0, 0);
+        return result;
+    }
+}
