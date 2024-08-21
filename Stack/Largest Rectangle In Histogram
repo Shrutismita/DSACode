@@ -1,0 +1,27 @@
+Q:- Largest Rectangle In Histogram
+Ans:- using stack
+TimeComplexity:- O(n)
+
+public class Solution {
+    public int LargestRectangleArea(int[] heights) {
+       int n = heights.Length;
+        int maxArea = 0;
+        Stack<int> stack = new Stack<int>();
+
+        for(int i = 0; i <= n; i++)
+        {
+            var height = i < n ? heights[i] : 0;
+
+            while(stack.Any() && heights[stack.Peek()] > height)
+            {
+                var currHeight = heights[stack.Pop()];
+                var prevIndex = stack.Count == 0 ? -1 : stack.Peek();
+                
+                maxArea = Math.Max(maxArea, currHeight * (i - 1 - prevIndex));
+            }
+
+            stack.Push(i);
+        }
+        return maxArea;
+    }
+}
