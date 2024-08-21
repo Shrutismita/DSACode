@@ -1,0 +1,46 @@
+Q:- Min Stack
+Ans: - Using Stack
+Time Complexity : O(1)
+
+public class MinStack {
+
+     Stack<int> st = null;
+     Stack<int> minSt = null;
+    public MinStack() {
+        st = new Stack<int>();
+        minSt = new Stack<int>();
+    }
+    
+    public void Push(int val) {
+        if(minSt.Count == 0 || (val <= minSt.Peek()))
+        {
+            minSt.Push(val);
+        }
+        st.Push(val);
+    }
+    
+    public void Pop() {
+        if(st.Peek() == minSt.Peek())
+        {
+            minSt.Pop();
+        }
+        st.Pop();
+    }
+    
+    public int Top() {
+        return st.Peek();
+    }
+    
+    public int GetMin() {
+        return minSt.Peek();
+    }
+}
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.Push(val);
+ * obj.Pop();
+ * int param_3 = obj.Top();
+ * int param_4 = obj.GetMin();
+ */
