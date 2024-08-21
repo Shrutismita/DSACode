@@ -1,0 +1,43 @@
+Q:- Find Minimum In Rotated Sorted Array
+Ans:- 
+TimeComplexity:- 
+
+public class Solution {
+    public int FindMin(int[] nums) {
+        if(nums.Length == 1)
+        {
+            return nums[0];
+        }
+        if(nums.Length == 2)
+        {
+            return Math.Min(nums[0],nums[1]);
+        }
+        int left = 0;
+        int right = nums.Length - 1;
+        int mid = left + (right - left) / 2;
+        if(nums[left] < nums[mid] && nums[mid] < nums[right])
+        {
+            return nums[left];
+        }
+        else
+        {
+            while(left <= right)
+            {
+                mid = left + (right-left)/2;
+                if(mid > 0 && nums[mid] < nums[mid - 1])
+                {
+                    return nums[mid];
+                }
+                else if(nums[mid] < nums[right])
+                {
+                    right = mid - 1 ;
+                }
+                else
+                {
+                    left = mid +1;
+                }
+            }
+        }
+        return -1;
+    }
+}
