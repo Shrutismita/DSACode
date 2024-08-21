@@ -1,0 +1,43 @@
+Q:- Evaluate Reverse Polish Notation
+Ans: Using Stack
+Time Complexicity:- O(n)
+
+public class Solution {
+    public int EvalRPN(string[] tokens) {
+        Stack<int> st = new Stack<int>();
+         foreach(var token in tokens)
+         {
+            if(token == "+" ||
+               token == "-" ||
+               token == "*" ||
+               token == "/" )
+               {
+                  int op2 = st.Peek();
+                  st.Pop();
+                  int op1 =  st.Peek();
+                  st.Pop();
+                  if ( token == "+")
+                  {
+                    st.Push(op1 + op2);
+                  }
+                   if ( token == "-")
+                  {
+                   st.Push(op1 - op2);
+                  }
+                   if ( token == "*")
+                  {
+                   st.Push(op1 * op2);
+                  }
+                   if ( token == "/")
+                  {
+                    st.Push(op1 / op2);
+                  }
+               }
+              else
+              {
+                st.Push(int.Parse(token));
+              }
+         }
+         return st.Pop();
+    }
+}
