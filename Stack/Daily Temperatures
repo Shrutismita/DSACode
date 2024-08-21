@@ -1,0 +1,26 @@
+Q:- Daily Temperatures
+
+Ans:- 
+TimeComplexicity-: O(n)
+
+public class Solution {
+    public int[] DailyTemperatures(int[] temperatures) {
+        Stack<(int,int)> st = new Stack<(int,int)>();
+        int n = temperatures.Length;
+        int[] result = new int[n] ;
+        for(int i = n - 1 ; i >= 0 ; i--)
+        {
+            while(st.Any() && st.Peek().Item1 <= temperatures[i])
+            {                          
+                     int index = st.Pop().Item2;
+                     if(st.Any())     
+                     {                
+                       result[index] =  index - i; 
+                     }                   
+                
+            }
+            st.Push((temperatures[i], i));            
+        }
+        return result;
+    }
+}
