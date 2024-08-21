@@ -1,0 +1,33 @@
+Q:- Valid Parentheses
+Ans:- Using Stack 
+Time Complexity:- O(n)
+
+public class Solution {
+    public bool IsValid(string s) {
+        Stack<char> st = new Stack<char>();
+        for(int i= 0; i < s.Length ; i++)
+        {
+            if(st.Count == 0)
+                 {
+                   st.Push(s[i]);
+                 }
+            else if((st.Peek() == '(' && s[i]  == ')') || 
+               (st.Peek() == '{' && s[i]  == '}') || 
+               (st.Peek() == '[' && s[i]  == ']' ))
+               {
+                st.Pop();
+               }
+               else{
+                st.Push(s[i]);
+               }
+        }
+        if(st.Count == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}
