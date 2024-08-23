@@ -1,4 +1,4 @@
-Q:- Largest Rectangle In Histogram
+Q:-84 https://leetcode.com/problems/largest-rectangle-in-histogram/description/
 Ans:- using stack
 TimeComplexity:- O(n)
 
