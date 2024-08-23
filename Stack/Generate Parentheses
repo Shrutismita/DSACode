@@ -1,6 +1,6 @@
-Q: Generate Parentheses
+Q:-22 https://leetcode.com/problems/generate-parentheses/description/
 Ans: Using Stack and back tracking
-timeComplexity:- 
+timeComplexity:- Not able to find time complexity
 
 public class Solution {
     public IList<string> GenerateParenthesis(int n) {
