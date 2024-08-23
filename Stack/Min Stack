@@ -1,4 +1,4 @@
-Q:- Min Stack
+Q:-155 https://leetcode.com/problems/min-stack/description/
 Ans: - Using Stack
 Time Complexity : O(1)
 
