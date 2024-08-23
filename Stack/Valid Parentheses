@@ -1,4 +1,4 @@
-Q:- Valid Parentheses
+Q:-20 https://leetcode.com/problems/valid-parentheses/description/
 Ans:- Using Stack 
 Time Complexity:- O(n)
 
