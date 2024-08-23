@@ -1,4 +1,4 @@
-Q:- Binary Search
+Q:-704 https://leetcode.com/problems/binary-search/description/
 Ans:- Using Binary Search
 TimeComplexity-: O(logn)
 
