@@ -1,6 +1,6 @@
-Q:- Find Minimum In Rotated Sorted Array
+Q:-153 https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
 Ans:- 
-TimeComplexity:- 
+TimeComplexity:- Not able to find TimeComplexity
 
 public class Solution {
     public int FindMin(int[] nums) {
