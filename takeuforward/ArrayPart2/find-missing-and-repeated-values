@@ -1,0 +1,23 @@
+Q: https://leetcode.com/problems/find-missing-and-repeated-values/description/
+
+Ans:
+public class Solution {
+    public int[] FindMissingAndRepeatedValues(int[][] grid) {
+        List<int> list = new List<int>();
+        for(int i = 0 ; i < grid.Length; i++)
+        {
+            for(int j = 0; j < grid[0].Length; j++)
+            {
+                list.Add(grid[i][j]);
+            }
+        }
+        int n = list.Count;
+        int expectedSum = n * (n+1)/2;
+        int actualSum = list.Sum();
+        int duplicateNumber = list.GroupBy(x=>x).Where(y=>y.Count() == 2).Select(x=>x.Key).FirstOrDefault();
+        int missingNumber = expectedSum - actualSum + duplicateNumber;
+
+        return new int[]{duplicateNumber,missingNumber};
+    
+    }
+}
