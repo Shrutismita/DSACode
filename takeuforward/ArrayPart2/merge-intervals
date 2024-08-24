@@ -1,0 +1,27 @@
+Q: https://leetcode.com/problems/merge-intervals/description/
+
+Ans:
+public class Solution {
+    public int[][] Merge(int[][] intervals) {
+        List<int[]> nonOverlap = new List<int[]>();
+        Array.Sort(intervals,(a,b)=>a[0]-b[0]);
+        nonOverlap.Add(intervals[0]);
+        for(int i = 1; i < intervals.Length; i++)
+        {           
+            int previousIntervalEnd = nonOverlap[nonOverlap.Count - 1][1];
+            int currentIntervalBegin = intervals[i][0];
+            if(previousIntervalEnd >= currentIntervalBegin)
+            {
+                int currentIntervalEnd = intervals[i][1];
+                if(previousIntervalEnd <= currentIntervalEnd)
+                {
+                 nonOverlap[nonOverlap.Count - 1][1] = intervals[i][1];   
+                }
+            }
+            else {
+                nonOverlap.Add(intervals[i]);
+            }
+        }
+        return nonOverlap.ToArray();
+    }
+}
