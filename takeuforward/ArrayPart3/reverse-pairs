@@ -1,0 +1,53 @@
+Q: https://leetcode.com/problems/reverse-pairs/
+
+Ans:
+public class Solution {            
+        int count=0;
+    public int ReversePairs(int[] nums) {
+
+        MergeSort(nums,0,nums.Length-1);
+        return count;
+      
+    }
+    void MergeSort(int[] nums,int left,int right)
+    {
+        if(left<right)
+        {
+            int mid=(left+right)/2;
+            MergeSort(nums,left,mid);
+            MergeSort(nums,mid+1,right);
+
+            Merge(nums,left,mid,right);
+        }
+    }
+    void Merge(int[] nums,int left,int mid,int right)
+    {
+        int i=left,j=mid+1;
+        while(i<=mid && j<=right)
+        {
+            if((long)nums[i]>(long)2*nums[j])
+            {
+                count=count+(mid-i+1);
+                j++;
+            }
+            else
+            {
+              i++;
+            }
+        }
+        int[] temp=new int[right-left+1];
+        int k=0;
+        for(i=left;i<=right;i++)
+        {
+           temp[k++]=nums[i];
+        }
+        
+        Array.Sort(temp);
+        k=0;
+        for(i=left;i<=right;i++)
+        {
+           nums[i]=temp[k++];
+        }
+     
+    }
+}
