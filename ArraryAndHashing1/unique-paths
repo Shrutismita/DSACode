@@ -1,0 +1,24 @@
+Q: https://leetcode.com/problems/unique-paths/description/
+
+Ans:
+public class Solution {
+    public int UniquePaths(int m, int n) {
+        int[,] uniPaths = new int[m,n];
+        for(int i = 0; i < m; i++)
+        {
+            for(int j = 0; j< n; j++)
+            {
+               uniPaths[i,j] = 1;
+            }
+        }
+        
+        for(int i = 1 ; i< m; i++)
+        {
+            for(int j = 1; j < n; j++)
+            {
+                uniPaths[i,j] = uniPaths[i - 1,j] + uniPaths[i,j - 1];
+            }
+        }
+        return uniPaths[m - 1, n - 1];
+    }
+}
