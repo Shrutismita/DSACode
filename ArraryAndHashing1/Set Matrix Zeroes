@@ -1,0 +1,34 @@
+Q:- 73. https://leetcode.com/problems/set-matrix-zeroes/description/
+Ans:-
+
+public class Solution {
+    public void SetZeroes(int[][] matrix) {
+        List<int> list = new List<int>();
+        for(int row = 0; row < matrix.Length ; row++)
+        {
+            bool hasZero = false ;
+            for (int col = 0; col < matrix[0].Length ; col++)
+            {
+                if(matrix[row][col] == 0)
+                {
+                    hasZero = true;
+                    list.Add(col);
+                }
+            }
+            if(hasZero)
+            {
+                for(int col = 0; col < matrix[0].Length; col++)
+                {
+                    matrix[row][col] = 0;
+                }
+            }
+        }
+        foreach(int col in list)
+        {
+            for(int row = 0; row < matrix.Length; row++)
+            {
+                matrix[row][col] = 0;
+            }
+        }
+    }
+}
