@@ -1,0 +1,22 @@
+Q: https://leetcode.com/problems/rotate-image/description/
+
+Ans:-
+
+public class Solution {
+    public void Rotate(int[][] matrix) {
+        int n = matrix.Length;
+        for(int row = 0; row < n ; row++)
+        {
+            for(int col = row + 1; col < n ; col++)
+            {
+                int temp = matrix[row][col];
+                matrix[row][col] = matrix[col][row];
+                matrix[col][row] = temp;
+            }
+        }
+        for(int row = 0 ; row < n; row++)
+        {
+            Array.Reverse(matrix[row]);
+        }
+    }
+}
