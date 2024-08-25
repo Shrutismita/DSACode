@@ -1,0 +1,27 @@
+Q:- 118. https://leetcode.com/problems/pascals-triangle/description/
+Ans:- 
+public class Solution {
+    public IList<IList<int>> Generate(int numRows) {
+        var triangle = new List<IList<int>>();
+
+           if(numRows == 0) return triangle;        
+               triangle.Add(new List<int>(1){1});        
+            if(numRows == 1) return triangle;        
+                triangle.Add(new List<int>(2){1,1});
+           
+    
+        for(int i = 2 ; i < numRows; i++)
+        {
+            List<int> innerTri = new List<int>();
+            innerTri.Add(1);
+            for(int j = 1 ; j < i; j++)
+            {
+                int value = triangle[i-1][j-1] + triangle[i-1][j];
+                 innerTri.Add(value);
+            }
+            innerTri.Add(1);
+            triangle.Add(innerTri);
+        }
+        return triangle;
+    }
+}
