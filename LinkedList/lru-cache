@@ -1,0 +1,52 @@
+Q: https://leetcode.com/problems/lru-cache/
+
+Ans:
+public class LRUCache {
+  private Dictionary<int,LinkedListNode<int>> dict;
+    private LinkedList<int> list;
+    private readonly int size;
+
+    public LRUCache(int capacity) {
+         dict = new Dictionary<int,LinkedListNode<int>>(capacity);
+        list = new LinkedList<int>();
+        size = capacity;
+    }
+    
+    public int Get(int key) {
+        if (!dict.ContainsKey(key))
+            return -1;
+        var node = dict[key];
+        if (node.List == null) {
+            dict.Remove(key);
+            return -1;
+        }   
+        list.Remove(node);
+        list.AddFirst(node);
+        return node.Value;
+    }
+    
+    public void Put(int key, int value) {
+        if (dict.ContainsKey(key)) {
+            var node = dict[key];
+            if (node.List != null) {
+                node.Value = value;
+                list.Remove(node);
+                list.AddFirst(node);
+                return;
+            }
+            else
+                dict.Remove(key);
+        }
+        if (list.Count == size)
+            list.RemoveLast();
+          var newNode = list.AddFirst(value);
+         dict.Add(key, newNode);
+    }
+}
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * LRUCache obj = new LRUCache(capacity);
+ * int param_1 = obj.Get(key);
+ * obj.Put(key,value);
+ */
