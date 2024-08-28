@@ -1,0 +1,25 @@
+Q:- https://leetcode.com/problems/find-the-duplicate-number/description/
+
+Ans:
+public class Solution {
+    public int FindDuplicate(int[] nums) {
+        int slow = nums[0];
+        int fast = nums[0];
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        } while(slow != fast);
+
+        slow = nums[0];
+         Console.WriteLine("Before Slow: "+ slow);
+         Console.WriteLine("Before fast: "+ fast);
+        while (slow != fast)
+        {
+            slow = nums[slow];
+            Console.WriteLine("Slow: "+ slow);
+            fast = nums[fast];
+            Console.WriteLine("Fast: "+ fast);
+        }
+        return fast;
+    }
+}
