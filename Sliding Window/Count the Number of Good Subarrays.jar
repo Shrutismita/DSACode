@@ -1,0 +1,31 @@
+Q:- 2537. https://leetcode.com/problems/count-the-number-of-good-subarrays/
+====================================================================================
+
+class Solution {
+    public long countGood(int[] nums, int k) {
+        int n = nums.length;
+        Map<Integer,Integer> map = new HashMap<>();
+        long ans = 0;
+        long pairCount = 0;
+        int i = 0, j = 0;
+
+        while( j < n)
+        {
+            int int_j = nums[j];
+            map.put(int_j , map.getOrDefault(int_j,0) + 1);
+            pairCount += map.get(int_j) - 1;
+            while(pairCount >= k)
+            {
+                ans += (n - j);
+                pairCount -= map.get(nums[i]) - 1;
+                int int_i = nums[i];
+                map.put(int_i , map.get(int_i) - 1);
+                if(map.get(int_i) == 0)
+                map.remove(int_i);
+                i++;
+            }
+            j++;
+        }
+        return ans;
+    }
+}
