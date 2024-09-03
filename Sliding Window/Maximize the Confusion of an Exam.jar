@@ -1,0 +1,31 @@
+Q:- 2024. https://leetcode.com/problems/maximize-the-confusion-of-an-exam/
+=================================================================================
+class Solution {
+    public int maxConsecutiveAnswers(String answerKey, int k) {
+        int n = answerKey.length();
+        
+        Map<Character,Integer> map = new HashMap<>();
+        int result = 0;
+        int i = 0, j =0;
+         map.put('T',0);
+        map.put('F',0);
+       
+        while (j < n) 
+        {
+           
+            char ch_j =  answerKey.charAt(j);
+            map.put(ch_j , map.getOrDefault(ch_j,0) + 1);
+            while(Math.min(map.get('T'), map.get('F')) > k) 
+            {               
+                 char ch_i = answerKey.charAt(i);
+                 map.put(ch_i , map.getOrDefault(ch_i,0) - 1);
+                i++;
+            }
+            
+           result = Math.max(result, j - i + 1);
+           j++;
+        }
+        
+        return result;
+    }
+}
