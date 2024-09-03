@@ -1,0 +1,26 @@
+Q:- 2398. https://leetcode.com/problems/maximum-number-of-robots-within-budget/description/
+====================================================================================================
+class Solution {
+    public int maximumRobots(int[] chargeTimes, int[] runningCosts, long budget) {
+        long sum = 0 ;
+        int i = 0, n = chargeTimes.length ;
+        Deque<Integer> deq = new LinkedList<>() ;
+        
+        for (int j = 0; j < n; j++) {
+            sum += runningCosts[j] ;
+            
+            while (!deq.isEmpty() && chargeTimes[deq.peekLast()] <= chargeTimes[j])
+            {
+                deq.pollLast() ;
+            }
+              deq.addLast(j) ;
+            if (chargeTimes[deq.getFirst()] + (j-i+1)*sum > budget) {
+                if (deq.getFirst() == i)
+                    deq.pollFirst() ;
+                sum -= runningCosts[i++] ;
+            }
+        }
+        
+        return n-i ;
+    }
+}
