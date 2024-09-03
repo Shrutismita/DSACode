@@ -1,0 +1,26 @@
+Q:- 2730. https://leetcode.com/problems/find-the-longest-semi-repetitive-substring/
+==========================================================================================
+class Solution {
+    public int longestSemiRepetitiveSubstring(String s) {
+        int n =s.length();
+        int max = 0,count = 0 , prev = 0;
+        int i = 0 , j = 0;
+        while(j < n)
+        {
+            if( j > 0 && s.charAt(j) == s.charAt(j - 1))
+            {
+                count++;
+                if(count > 1)
+                {
+                    count--;
+                     i = prev;
+                }
+                prev = j;
+            }
+            if(count < 2)
+            max = Math.max(max, (j - i +1));
+            j++;
+        }
+        return max;
+    }
+}
