@@ -1,0 +1,23 @@
+Q:- 1358. https://leetcode.com/problems/number-of-substrings-containing-all-three-characters/description/
+==============================================================================================================
+class Solution {
+    public int numberOfSubstrings(String s) {
+        int n = s.length();
+        int i = 0, j = 0;
+        int count = 0;
+        int[] arr = new int[3];
+        while( j < n)
+        {
+            char ch_j = s.charAt(j);
+            arr[ch_j - 'a']++;
+            while(arr[0] > 0 && arr[1] > 0 && arr[2] > 0)
+            {
+                count += n - j;
+                char ch_i = s.charAt(i++);
+                arr[ch_i - 'a']--;
+            }
+            j++;
+        }
+        return count;
+    }
+}
