@@ -1,0 +1,33 @@
+Q:- 2799. https://leetcode.com/problems/count-complete-subarrays-in-an-array/
+==================================================================================
+
+class Solution {
+    public int countCompleteSubarrays(int[] nums) {
+        int n = nums.length;
+        int count = 0;
+        Set<Integer> distinctEle = new HashSet<>();
+        for(int num : nums)
+        {
+            distinctEle.add(num);
+        }
+        int totalDistinct = distinctEle.size();
+        Map<Integer,Integer> windowCount = new HashMap<>();
+        int i = 0 , j = 0;
+        while(j < n)
+        {
+            windowCount.put(nums[j], windowCount.getOrDefault(nums[j], 0 ) + 1);
+            while(windowCount.size() == totalDistinct)
+            {
+                count += n - j;
+                windowCount.put(nums[i],windowCount.get(nums[i]) - 1);
+                if(windowCount.get(nums[i]) == 0)
+                {
+                    windowCount.remove(nums[i]);
+                }
+                i++;
+            }
+            j++;
+        }
+        return count;
+    }
+}
