@@ -1,0 +1,31 @@
+Q: 904. https://leetcode.com/problems/fruit-into-baskets/description/
+=======================================================================
+
+class Solution {
+    public int totalFruit(int[] fruits) {
+        int n = fruits.length;
+        int i = 0 , j = 0;
+        int maxFruits = 0;
+        Map<Integer,Integer> map = new HashMap<>();
+        while(j < n)
+        {
+            int fruits_j = fruits[j];
+            map.put(fruits_j, map.getOrDefault(fruits_j , 0)+ 1);
+            if(map.keySet().size() > 2)
+            {
+                if(map.get(fruits[i]) == 1)
+                {
+                    map.remove(fruits[i]);
+                }
+                else
+                {
+                    map.put(fruits[i], map.getOrDefault(fruits[i],0) - 1);
+                }
+                i++;
+            }
+            maxFruits = Math.max(maxFruits, j - i +1);
+            j++;
+        }
+        return maxFruits;
+    }
+}
