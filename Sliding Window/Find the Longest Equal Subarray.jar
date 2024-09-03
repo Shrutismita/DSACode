@@ -1,0 +1,25 @@
+Q:- 2831. https://leetcode.com/problems/find-the-longest-equal-subarray/description/
+=======================================================================================
+class Solution {
+    public int longestEqualSubarray(List<Integer> nums, int k) {
+        int n = nums.size();
+        int maxfrequency = 0;
+        HashMap<Integer,Integer> map = new HashMap<>();
+        int i = 0 , j = 0;
+        while( j < n)
+        {
+            int curr = nums.get(j);
+            map.put(curr,map.getOrDefault(curr,0)+1);
+            maxfrequency = Math.max(maxfrequency,map.get(curr));
+            int windowSize = j - i + 1;
+            if( windowSize - maxfrequency > k )
+            {
+                curr = nums.get(i);
+                map.put(curr, map.get(curr) - 1);
+                i++;
+            }
+            j++;
+        }
+        return maxfrequency;
+    }
+}
