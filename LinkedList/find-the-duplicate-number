@@ -1,5 +1,5 @@
-Q:- https://leetcode.com/problems/find-the-duplicate-number/description/
-
+Q:- https://leetcode.com/problems/find-the-duplicate-number/
+TC :- O(n)
 Ans:
 public class Solution {
     public int FindDuplicate(int[] nums) {
