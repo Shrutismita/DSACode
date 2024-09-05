@@ -1,5 +1,5 @@
 Q: https://leetcode.com/problems/merge-k-sorted-lists/description/
-
+TC:- (log(k)*n)
 Ans:
 
 public class Solution {
