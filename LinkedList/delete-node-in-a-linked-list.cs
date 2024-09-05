@@ -1,5 +1,5 @@
-Q:- https://leetcode.com/problems/delete-node-in-a-linked-list/description/
-
+Q:- https://leetcode.com/problems/delete-node-in-a-linked-list/
+TC - O(n)
 Ans:
 public class Solution {
     public void DeleteNode(ListNode node) {
