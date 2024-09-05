@@ -1,5 +1,5 @@
-Q:- https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/description/
-
+Q:- https://leetcode.com/problems/delete-the-middle-node-of-a-linked-list/
+TC :- O(n)
 Ans:
 public class Solution {
     public ListNode DeleteMiddle(ListNode head) {
