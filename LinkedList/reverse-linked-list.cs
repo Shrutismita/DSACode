@@ -1,4 +1,5 @@
 Q:- https://leetcode.com/problems/reverse-linked-list/description/
+TC :- O(n)
 Write the code using Recursion approach
 Ans:
 
