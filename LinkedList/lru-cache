@@ -1,5 +1,5 @@
 Q: https://leetcode.com/problems/lru-cache/
-
+TC :- O(n)
 Ans:
 public class LRUCache {
   private Dictionary<int,LinkedListNode<int>> dict;
