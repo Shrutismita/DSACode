@@ -1,5 +1,5 @@
 Q: https://leetcode.com/problems/linked-list-cycle-ii/description/
-
+TC :- O(n)
 Ans:
 
 public class Solution {
