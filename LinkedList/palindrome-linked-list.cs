@@ -1,5 +1,5 @@
 Q:- https://leetcode.com/problems/palindrome-linked-list/description/
-
+TC :- not able to find
 Ans:
 public class Solution {
      ListNode curr;
