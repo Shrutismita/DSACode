@@ -1,5 +1,5 @@
 Q:- https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
-
+TC :- O(n)
 Ans:
 /**
  * Definition for singly-linked list.
