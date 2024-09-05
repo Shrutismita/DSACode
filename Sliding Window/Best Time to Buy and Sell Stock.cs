@@ -1,4 +1,5 @@
 Q:- 121. https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+TC :- O(n)
 ================================================================================C#=========================
   public class Solution {
     public int MaxProfit(int[] prices) {
