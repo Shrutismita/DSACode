@@ -20,7 +20,8 @@ Explanation: The resultant linked lists has every node in a single level.(Note: 
 
   Ans:
     writting the code using Recursion approach in Java
-
+TC - not able to find
+=====================================================================================================================
 class Solution {    
     // Function to flatten a linked list
     Node flatten(Node head) {
