@@ -1,5 +1,5 @@
 Q:- https://leetcode.com/problems/add-two-numbers/description/
-
+TC:- O(n)
 Ans:
 public class Solution {
     public ListNode AddTwoNumbers(ListNode l1, ListNode l2) {
