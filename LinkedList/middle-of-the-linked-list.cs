@@ -1,5 +1,5 @@
 Q: - https://leetcode.com/problems/middle-of-the-linked-list/description/
-
+TC: - O(n)
 Ans:-
 
   
