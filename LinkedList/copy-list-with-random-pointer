@@ -1,5 +1,5 @@
-Q:- https://leetcode.com/problems/copy-list-with-random-pointer/description/
-
+Q:- https://leetcode.com/problems/copy-list-with-random-pointer/
+TC - O(n)
 Ans:-
 /*
 // Definition for a Node.
