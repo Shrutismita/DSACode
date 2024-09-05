@@ -1,5 +1,5 @@
 Q:- https://leetcode.com/problems/intersection-of-two-linked-lists/description/
-
+TC: - O(n)
 Ans:
 public class Solution {
     public ListNode GetIntersectionNode(ListNode headA, ListNode headB) {
