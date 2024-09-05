@@ -1,4 +1,5 @@
-Q: 930. https://leetcode.com/problems/binary-subarrays-with-sum/description/
+Q: 930. https://leetcode.com/problems/binary-subarrays-with-sum/
+TC :- O(n)
 ====================================================================================
 class Solution {
     public int numSubarraysWithSum(int[] nums, int goal) {
