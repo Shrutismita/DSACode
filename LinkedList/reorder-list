@@ -1,5 +1,5 @@
 Q: https://leetcode.com/problems/reorder-list/description/
-
+TC :- O(n)
 Ans:
 /**
  * Definition for singly-linked list.
