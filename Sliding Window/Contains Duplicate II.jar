@@ -1,4 +1,5 @@
-Q:- 219. https://leetcode.com/problems/contains-duplicate-ii/description/
+Q:- 219. https://leetcode.com/problems/contains-duplicate-ii/
+TC :- O(n)
 =============================================================================
 class Solution {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
