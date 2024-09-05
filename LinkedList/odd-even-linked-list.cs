@@ -1,5 +1,5 @@
 Q:- https://leetcode.com/problems/odd-even-linked-list/
-
+TC :- O(n)
 Ans:-
   public class Solution {
     public ListNode OddEvenList(ListNode head) {
