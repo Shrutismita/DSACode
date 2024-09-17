@@ -1,0 +1,30 @@
+Q:- https://leetcode.com/problems/recover-binary-search-tree/
+
+T.C:- O(n)
+S.C:- O(1)
+
+  ============================================================================
+  class Solution {
+    TreeNode prev = null, firstStartPoint = null, lastEndPoint = null;
+    void inOrder(TreeNode root)
+    {
+        if(root == null)return;
+        inOrder(root.left);
+        if(prev != null && prev.val > root.val)
+        {
+            if(firstStartPoint == null)
+            {
+                firstStartPoint = prev;
+            }
+            lastEndPoint = root;
+        }
+        prev = root;
+        inOrder(root.right);
+    }
+    public void recoverTree(TreeNode root) {
+           inOrder(root);
+           int temp = firstStartPoint.val;
+           firstStartPoint.val = lastEndPoint.val;
+           lastEndPoint.val = temp;
+    }
+}
