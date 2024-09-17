@@ -1,0 +1,32 @@
+Q:- https://leetcode.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/
+T.C:- O(n)
+S.C:- O(n)
+
+ =========================================================================================
+  class Solution {
+    HashMap<Integer, Integer> postorderMap= new HashMap<>();
+    TreeNode constructBT(int[] preorder, int preorderStart, int preorderEnd, int postorderStart, int postorderEnd) 
+    {
+        if(preorderStart > preorderEnd) return null;
+
+        int rootData= preorder[preorderStart];
+
+        if(preorderStart == preorderEnd)
+                    return new TreeNode(rootData, null, null);
+         int  LeftrootIndex= postorderMap.get(preorder[preorderStart + 1]);
+         int leftSubtreeSize= LeftrootIndex - postorderStart + 1;  
+
+         TreeNode left= constructBT(preorder, preorderStart+ 1, preorderStart + leftSubtreeSize, postorderStart, LeftrootIndex);
+         TreeNode right= constructBT(preorder, preorderStart + leftSubtreeSize + 1, preorderEnd, LeftrootIndex + 1, preorderEnd - 1);       
+             
+        TreeNode node= new TreeNode(rootData, left, right); 
+        
+        return node;        
+    }
+    public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
+        for(int i= 0; i< postorder.length; i++)
+            postorderMap.put(postorder[i], i);
+        
+        return constructBT(preorder, 0, preorder.length - 1, 0, postorder.length - 1);
+    }
+}
