@@ -1,0 +1,35 @@
+Q:- https://leetcode.com/problems/sliding-window-median/
+T.C:- O(n∗logk)
+S.C:- O(n)
+=================================================================================
+class Solution {
+    public double[] medianSlidingWindow(int[] nums, int k) {
+       double[] res=new double[nums.length-k+1];
+
+        PriorityQueue<Double> min=new PriorityQueue<Double>();
+        PriorityQueue<Double> max=new PriorityQueue<Double>(Collections.reverseOrder());
+
+        for(int i=0;i<nums.length;i++){
+
+            if(max.size() + min.size() == k){
+                if(!max.remove((double)nums[i-k])){
+                    min.remove((double)nums[i-k]);
+                }
+            }
+            min.add((double)nums[i]);
+            max.add(min.poll());
+            if(max.size()>(min.size())){
+                min.add(max.poll());
+            }
+            if(i>=k-1){
+                if(k%2==0){
+                    res[i-k+1]=(max.peek()+min.peek())/2.0;
+                }
+                else{
+                    res[i-k+1]=min.peek();
+                }
+            }
+        }
+        return res;
+    }
+}
