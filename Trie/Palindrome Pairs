@@ -1,0 +1,98 @@
+Q:- https://leetcode.com/problems/palindrome-pairs/description/
+
+T.C:- O(n * k^2), where we traverse n words and then search k length (average length of word in trie) and verify if they are palindrome as well which takes k time.
+S.C:- O(n)
+============================================================================================================================================================================
+class Solution {
+      List<List<Integer>> result = new ArrayList<>();
+    class TrieNode
+    {
+        int wordIndex = -1;
+        List<Integer> restIsPalList = new ArrayList<>();
+        TrieNode[]  children = new TrieNode[26];
+    };
+    
+    TrieNode getNode() {
+        TrieNode temp  = new TrieNode();
+        temp.wordIndex = -1;
+        for(int i = 0; i<26; i++) {
+            temp.children[i] = null;
+        }
+        return temp;
+    }
+    
+    void addNode(TrieNode root, String key, int index) {
+        TrieNode pCrawl = root;
+        for(int i = key.length()-1; i>=0;  i--) {
+            int idx = key.charAt(i) - 'a';
+            
+            if(isPalindrome(key, 0, i)) {
+                pCrawl.restIsPalList.add(index);
+            }
+            
+            if(pCrawl.children[idx] == null) {
+                pCrawl.children[idx] = getNode();
+            }
+            
+            pCrawl = pCrawl.children[idx];
+        }
+        
+        pCrawl.wordIndex = index;
+    }
+    
+    boolean isPalindrome(String key, int i, int j) {
+        while(i < j) {
+            if(key.charAt(i) != key.charAt(j))
+                return false;
+            i++;
+            j--;
+        }
+        return true;
+    }
+    
+    void search(TrieNode root, String key, int index) {
+        TrieNode pCrawl = root;
+        
+        for(int i = 0; i < key.length(); i++) {
+            int idx = key.charAt(i) - 'a';
+            
+            //example : xyzll zyx
+            if(pCrawl.wordIndex != -1 && isPalindrome(key, i, key.length()-1)) {
+                result.add(Arrays.asList(index, pCrawl.wordIndex));
+            }
+            
+            if(pCrawl.children[idx] == null)
+                return;
+            
+            pCrawl = pCrawl.children[idx];
+            
+        }
+        
+        //example : abcd dcba
+        if(pCrawl.wordIndex != -1 && pCrawl.wordIndex != index) {
+            result.add(Arrays.asList(index, pCrawl.wordIndex));
+        }
+        
+        //example : zyx llxyz
+        
+        for(int j : pCrawl.restIsPalList) {
+            result.add(Arrays.asList(index, j));
+        }
+    }
+    
+    public List<List<Integer>> palindromePairs(String[] words) {
+     
+        TrieNode root = getNode();
+        int n = words.length;
+        
+        for(int i = 0; i<n; i++) {
+            addNode(root, words[i], i);
+        }
+        
+        for(int i = 0; i<n; i++) {
+            search(root, words[i], i);
+        }
+        
+        return result;   
+    }
+}
