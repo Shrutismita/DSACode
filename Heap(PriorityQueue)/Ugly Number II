@@ -1,0 +1,43 @@
+Q:- https://leetcode.com/problems/ugly-number-ii/
+T.C:- O(1)
+S.C:- O(1)
+=================================================================================
+class Solution {
+    public int nthUglyNumber(int n) {
+        PriorityQueue<Long> pq = new PriorityQueue<>();
+        HashSet<Long> set = new HashSet<>();
+        
+        pq.add(1L);
+        set.add(1L);
+
+        int count = 0;
+        long currUgly = 1;
+        while(count < n)
+        {
+            currUgly = pq.poll();
+            count++;
+            if(count == n)
+            {
+                return (int) currUgly;
+            }
+            long l1 = currUgly*2;
+            long l2 = currUgly*3;
+            long l3 = currUgly*5;
+            if(!set.contains(l1))
+            {
+                pq.add(l1);
+                set.add(l1);
+            }
+         if (!set.contains(l2)) {
+                pq.add(l2);
+                set.add(l2);
+            }
+            if (!set.contains(l3)) {
+                pq.add(l3);
+                set.add(l3);
+            }
+        }
+        return 0;
+
+    }
+}
