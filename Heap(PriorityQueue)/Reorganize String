@@ -1,0 +1,42 @@
+Q:- https://leetcode.com/problems/reorganize-string/
+T.C:- O(nlogK)
+S.C:- O(logK)
+=================================================================================
+class Solution {
+    public String reorganizeString(String s) {
+        if(s.length() == 1)return s;
+        HashMap<Character,Integer> map = new HashMap<>();
+        
+        for(char c : s.toCharArray())
+        {
+            int count = map.getOrDefault(c, 0) + 1;
+         
+            if (count > (s.length() + 1) / 2) 
+                return "";
+            
+            map.put(c, count);
+
+        }
+        PriorityQueue<Character> maxHeap = new PriorityQueue<>((a,b) -> map.get(b) - map.get(a));
+        maxHeap.addAll(map.keySet());
+
+        char prev = '?';
+         StringBuilder result = new StringBuilder();
+         while(!maxHeap.isEmpty())
+         {
+            char current = maxHeap.poll();
+            result.append(current);
+            map.put(current,map.get(current) - 1);
+            if(prev != '?' && map.get(prev) > 0)
+            {
+                maxHeap.add(prev);
+            }
+            prev = current;
+         }
+         if(result.length() != s.length())
+         {
+            return "";
+         }
+         return result.toString();
+    }
+}
