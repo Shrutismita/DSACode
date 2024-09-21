@@ -1,0 +1,93 @@
+Q:- https://leetcode.com/problems/word-search-ii/
+T.C:- could not able tofind
+S.C:- O(n)
+=================================================================================
+class Solution {
+    List<String> result = new ArrayList<>() ;
+    int r,c;
+    int[][] directions = new int[][]{{-1, 0},{1, 0},{0, 1},{0, -1}};
+
+    //Node class for Trie
+    class TrieNode 
+    {
+        boolean endOfWord;
+        TrieNode[] children = new TrieNode[26];
+        String word;
+    }
+
+    //get Trie Node
+    TrieNode getNode()
+    {
+        TrieNode temp = new TrieNode();
+        temp.endOfWord = false;
+        for(int i = 0; i<26; i++) {
+            temp.children[i] = null;
+        }
+        temp.word = "";
+        return temp;
+    }
+
+    void insert(TrieNode root, String str) 
+    {
+        TrieNode pCrawl = root;
+        //check for each character of word
+        for(int i = 0 ; i < str.length() ; i++) 
+        {
+           char ch = str.charAt(i);
+            if(pCrawl.children[ch-'a'] == null) 
+            {
+                pCrawl.children[ch-'a'] = getNode();
+            }
+            pCrawl = pCrawl.children[ch-'a'];
+        }
+        pCrawl.endOfWord = true;
+        pCrawl.word = str;
+    }
+    void DFS(char[][] board, int i, int j, TrieNode root) 
+    {
+        if(i<0 || i >= r || j<0 || j >= c || board[i][j] == '$' || root.children[board[i][j]- 'a'] == null) {
+            return;
+        }
+        root = root.children[board[i][j]- 'a'];
+        if(root.endOfWord == true) {
+            result.add(root.word.toString());
+            root.endOfWord = false;
+        }
+        char temp = board[i][j];
+        
+        board[i][j] = '$';
+        if(i>0) DFS(board,i-1,j,root);
+        if(j>0) DFS(board,i,j-1,root);
+        if(i<board.length-1) DFS(board,i+1,j,root);
+        if(j<board[0].length-1) DFS(board,i,j+1,root);
+        
+        board[i][j] = temp;
+    }
+
+    public List<String> findWords(char[][] board, String[] words) {
+          r = board.length;
+          c = board[0].length;
+
+          //create root
+          TrieNode root = getNode();
+          //insert word in Trie
+          for(String str:words) 
+          {
+            insert(root, str);
+          }
+
+         //Traverse the Grid just once and find all the words in Trie if present
+         for(int i = 0; i<r; i++)
+         {
+            for(int j = 0; j<c; j++) 
+            {
+                char ch = board[i][j];
+                if(root.children[ch-'a'] != null)
+                {
+                    DFS(board, i, j, root);
+                }
+            }
+        }
+        return result;
+    }
+}
