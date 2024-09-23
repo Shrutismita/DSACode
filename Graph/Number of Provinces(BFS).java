@@ -11,9 +11,9 @@ S.C:- O(V)
         visited[u] = true;
         queue.add(u);
         while(!queue.isEmpty()) {
-            int u_1 = queue.poll();
+            int curr = queue.poll();
            //Visit neighbours
-            for(int v : adj.get(u_1)) {
+            for(int v : adj.get(curr)) {
                 if(!visited[v]) {
                     visited[v] = true;
                     queue.add(v);
@@ -58,12 +58,10 @@ class Solution {
         visited[u]=true;
         
         while(!que.isEmpty()) {
-            int u_1 = que.poll();
-            
-            
+            int curr = que.poll();
             //Visit neighbours
             for(int v = 0; v < adj.length; v++) {
-                if(adj[u_1][v] == 1 && !visited[v]) {
+                if(adj[curr][v] == 1 && !visited[v]) {
                     visited[v] = true;
                     que.add(v);
                 }
