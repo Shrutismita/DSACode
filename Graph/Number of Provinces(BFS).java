@@ -50,3 +50,37 @@ S.C:- O(V)
     }
 }
 ====================================================================================================
+  //Approach-2 : [ Using BFS - Using given input graph]
+class Solution {
+     private void bfs(int adj[][],int u ,boolean [] visited){
+        Queue<Integer> que = new LinkedList<>();
+        que.add(u);
+        visited[u]=true;
+        
+        while(!que.isEmpty()) {
+            int u_1 = que.poll();
+            
+            
+            //Visit neighbours
+            for(int v = 0; v < adj.length; v++) {
+                if(adj[u_1][v] == 1 && !visited[v]) {
+                    visited[v] = true;
+                    que.add(v);
+                }
+            } 
+        }
+    }
+    public int findCircleNum(int[][] isConnected) {
+        boolean[] visited =new boolean[isConnected.length];
+        int count=0;
+        for (int i=0;i<isConnected.length;i++){
+            if(!visited[i]){
+                bfs(isConnected,i,visited);
+                count++;
+            }
+        }
+        return count;
+        
+    }
+   
+}
