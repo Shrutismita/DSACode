@@ -70,3 +70,89 @@ class Pair
           return sum;
     }
 }
+=======================================================================================================================================
+  //Approach-2 (Using Kruskal's Algorithm)
+  
+class Solution {
+      int[] parent;
+      int[] rank;
+      int find(int x)
+      {
+        if(x == parent[x])
+              return x;
+
+        return parent[x] = find(parent[x]);      
+      }
+      void Union(int x, int y)
+      {
+        int parent_x = find(x);
+        int parent_y = find(y);
+
+        if(parent_x == parent_y)
+              return;
+
+        if(rank[parent_x] > rank[parent_y])
+        {
+            parent[parent_y]=parent_x;
+        }
+        else if(rank[parent_x] < rank[parent_y])
+        {
+            parent[parent_x]=parent_y;
+        }
+        else
+        {
+             parent[parent_x]=parent_y;
+             rank[parent_y]++;
+        }
+      }
+      int Kruskal( List<int[]> adj)
+      {
+        int sum = 0;
+        for(int[] temp : adj)
+        {
+            int u = temp[0];
+            int v = temp[1];
+            int wt = temp[2];
+
+            if(find(u) != find(v))
+            {
+                sum += wt;
+                Union(u,v);
+            }
+        }
+        return sum;
+      }
+    public int minCostConnectPoints(int[][] points) {
+        int V = points.length;
+
+        List<int[]> adj = new ArrayList<>();
+        parent = new int[V];
+        rank = new int[V];
+        for(int i = 0; i < V; i++)
+           {
+            parent[i] = i;
+            rank[i] = 1;
+           }
+
+        // Create an adjacency list to represent the graph
+        for(int i = 0; i < V ; i++)
+        {
+          for(int j = i+1; j<V;j++)
+          {
+             int x1 = points[i][0];
+             int y1 = points[i][1];
+
+             int x2 = points[j][0];
+             int y2 = points[j][1];
+              
+              int d = Math.abs(x1-x2)+ Math.abs(y1-y2);
+
+              adj.add(new int[]{i,j,d});
+              
+            }   
+        } 
+          Collections.sort(adj,(a,b) -> a[2] - b[2]);
+           return Kruskal(adj);
+    }
+}
+  
