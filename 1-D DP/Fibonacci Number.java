@@ -1,6 +1,6 @@
 Q:- https://leetcode.com/problems/fibonacci-number/
 ***************************************************************************************************
-  //Approach-1 (Using Recursion + Memoization)
+  //Approach-1 (Using Recursion + Memoization / Top Down)
   //T.C - O(2^n)
   //S.C- O(n)
 ------------------------------------------------------------
