@@ -40,7 +40,10 @@ Q:- https://leetcode.com/problems/house-robber/
         {
             int steal = dp[i-1];
             int skip = nums[i-1]+dp[i-2];
-
+             /*
+                SKIP  : If we skip this house,  then we have money till previous house  =  t[i-1]
+                STEAL : If we steal this house, then we can't take prev profit, we can take till (i-2)th house profit = t[i-2]
+            */
             dp[i] = Math.max(steal,skip);
         }
         return dp[n];
