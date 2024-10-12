@@ -34,8 +34,8 @@ Q:- https://leetcode.com/problems/house-robber/
         Arrays.fill(dp, -1);
         if(n == 1)
             return nums[0];
-        dp[0] = 0;
-        dp[1] = nums[0];
+        dp[0] = 0;// no house : i = 0 
+        dp[1] = nums[0];// 1 house : i = 1 
         for(int i =2; i <= n; i++)
         {
             int steal = dp[i-1];
