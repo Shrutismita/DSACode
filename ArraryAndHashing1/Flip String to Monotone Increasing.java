@@ -1,7 +1,9 @@
 Q:- https://leetcode.com/problems/flip-string-to-monotone-increasing/
 *************************************************************************************************
-  //Approach-1 (Using Recursion + Memoization)
-  -----------------------------------------------------------------
+//Approach-1 (Using Recursion + Memoization)
+// Time Complexity: O(n)
+// Space Complexity: O(n)
+-------------------------------------------------------------------------
   class Solution {
     int[][] dp;
     int n;
