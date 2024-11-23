@@ -1,6 +1,9 @@
 Q: - 438 https://leetcode.com/problems/find-all-anagrams-in-a-string/description/
-
-Ans:
+Company Tags  : Microsoft, Google, Amazon
+******************************************************************************************************   
+//T.C:- O(n)
+//T.C:- O(n)
+-------------------------------------------------------------    
 class Solution {
     public List<Integer> findAnagrams(String txt, String pat) {
     int n = txt.length();
