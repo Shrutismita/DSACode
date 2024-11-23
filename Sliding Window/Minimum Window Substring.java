@@ -1,6 +1,9 @@
 Q:-76 https://leetcode.com/problems/minimum-window-substring/description/
-
-============================================================================
+Company Tags    : Google, Amazon, Microsoft, Codenation, FactSet, , Atlassian, MakeMyTrip, Streamoid Technologies, Media.net, Airbnb
+****************************************************************************************************************************************************
+//T.C : O(m+n) where m = length of s and n = length of t
+//S.C : O(n)
+===================================================================
 class Solution {
     public String minWindow(String s, String t) {
           int n = s.length();
