@@ -1,4 +1,5 @@
-Q:- 424. https://leetcode.com/problems/longest-repeating-character-replacement/description/
+Q:- 424. https://leetcode.com/problems/longest-repeating-character-replacement/
+
 =============================================================================================
 class Solution {
     public int characterReplacement(String s, int k) {
