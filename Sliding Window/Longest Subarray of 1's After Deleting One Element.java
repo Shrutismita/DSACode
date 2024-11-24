@@ -1,6 +1,8 @@
 Q:- 1493. https://leetcode.com/problems/longest-subarray-of-1s-after-deleting-one-element/
+Company Tags                : Google, Meta
 ======================================================================================================
-
+//T.C:- O(n)
+----------------------    
 class Solution {
     public int longestSubarray(int[] nums) {
         int n = nums.length;
