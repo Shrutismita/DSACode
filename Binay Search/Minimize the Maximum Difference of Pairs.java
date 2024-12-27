@@ -1,5 +1,14 @@
 Q:- https://leetcode.com/problems/minimize-the-maximum-difference-of-pairs/
-****************************************************************************************
+   Company Tags                : META
+**************************************************************************************************************************
+//Binary Search + Greedy (This is the same Qn of pattern "Applying binary search on answer"
+//(Time Compplexity - O(m * log(n)) where m = max diff in pair
+//How to identify -> Notice the keywords - "min max"
+/*
+    Whenever we see in Question to Find Min(Max) or Max(Min) 
+    we will try to use Binary search on the result
+*/
+--------------------------------------------------------------------------------------------------------------------------
   class Solution {
     boolean isValid(int[] nums, int mid_max,int p)
     {
